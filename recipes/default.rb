@@ -1,8 +1,9 @@
 # encoding: utf-8
 #
-# Cookbook Name: mysql-hardening
+# Cookbook Name: percona-hardening
 # Recipe: default
 #
+# Copyright 2014, Christoph Hartmann
 # Copyright 2014, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,4 +19,4 @@
 # limitations under the License.
 #
 
-include_recipe('mysql-hardening::hardening')
+include_recipe('percona-hardening::hardening')

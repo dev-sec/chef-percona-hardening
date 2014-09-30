@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# Cookbook Name:: mysql-hardening
+# Cookbook Name:: percona-hardening
 # Attributes:: default
 #
 # Copyright 2014, Christoph Hartmann
