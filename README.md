@@ -1,12 +1,12 @@
-# mysql-hardening (Chef cookbook)
+# percona-hardening (Chef cookbook)
 
 ## Description
 
-Provides security configurations for mysql. It is intended to set up production-ready mysql instances that are configured with minimal surface for attackers.
+Provides security configurations for [Percona](http://www.percona.com/). It is intended to set up production-ready Percona instances that are configured with minimal surface for attackers.
 
-This cookbook focus security configuration of mysql and reuses the [mysql cookbook](https://github.com/opscode-cookbooks/mysql) for the installation. Therefore you can add this hardening layer on top of your existing mysql configuration in Chef.
+This cookbook focus security configuration of Percona. It is optimized to be a companion for [percona](https://github.com/phlipper/chef-percona). Therefore you can add this hardening layer on top of your existing Percona configuration in Chef. This cookbook does not replace the existing Percona, but focus on the secure configuration.
 
-We optimized this cookbook to work with [os-hardening](https://github.com/TelekomLabs/chef-os-hardening) and [ssh-hardening](https://github.com/TelekomLabs/chef-ssh-hardening) without a hassle. It will play well without, but you need to ensure all preconditions like `apt-get update` or `yum update` are met.
+We optimized this cookbook to work with [os-hardening](https://github.com/TelekomLabs/chef-os-hardening) and [ssh-hardening](https://github.com/TelekomLabs/chef-ssh-hardening) without a hassle. It will also play well without.
 
 ## Requirements
 
@@ -18,61 +18,57 @@ A sample role may look like:
 
 ```json
 {
-    "name": "mysql",
+    "name": "percona",
     "default_attributes": { },
     "override_attributes": { },
     "json_class": "Chef::Role",
     "description": "MySql Hardened Server Test Role",
     "chef_type": "role",
     "default_attributes" : {
-      "mysql": {
-        "server_root_password": "iloverandompasswordsbutthiswilldo",
-        "server_debian_password": "iloverandompasswordsbutthiswilldo"
+      "percona" : {
+        "server": {
+          "jemalloc": true,
+          "debian_password": "d3b1an",
+          "root_password": "r00t"
+        }
       }
     },
     "run_list": [
         "recipe[chef-solo-search]",
         "recipe[apt]",
-        "recipe[mysql::server]",
-        "recipe[mysql-hardening]"
+        "recipe[percona::server]",
+        "recipe[percona-hardening]"
     ]
 }
 ```
 
 ## Recipes
 
-### mysql-hardening::hardening (default)
+### percona-hardening::hardening (default)
 
-This recipe is an overley recipe for the [mysql cookbook](https://github.com/opscode-cookbooks/mysql)) and applies `mysql-hardening::hardening`
+This recipe is an overlay recipe for the [percona cookbook](https://github.com/phlipper/chef-percona)) and applies `percona-hardening::hardening`
 
-Add the following to your runlist and customize security option attributes
+Add the following to your run list and customize security option attributes
 
 ```bash
-  "recipe[mysql::server]",
-  "recipe[mysql-hardening]"
+  "recipe[percona::server]",
+  "recipe[percona-hardening]"
 ```
-
-This hardening recipe installs the hardening but expects an existing installation of Mysql, MariaDB or Percona. If you are not using the mysql cookbook, you may need to adapt the attributes:
-
-- `node['mysql']['service_name']` = 'default'
-- `node['mysql']['data_dir']` = '/var/lib/mysql'
-- `node['mysql-hardening']['conf-file'] = '/etc/mysql/conf.d/hardening.cnf'` 
-- `node['mysql-hardening']['user'] = 'mysql'`
 
 ## Security Options
 
 Further information is already available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step) 
 
- * default['mysql']['security']['chroot'] - [chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)
- * default['mysql']['security']['safe_user_create'] - [safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create)
- * default['mysql']['security']['secure_auth'] - [secure-auth](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-auth)
- * default['mysql']['security']['skip_symbolic_links'] - [skip-symbolic-links](http://dev.mysql.com/doc/refman/5.7/en/server-
+ * default['percona']['security']['chroot'] - [chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)
+ * default['percona']['security']['safe_user_create'] - [safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create)
+ * default['percona']['security']['secure_auth'] - [secure-auth](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-auth)
+ * default['percona']['security']['skip_symbolic_links'] - [skip-symbolic-links](http://dev.mysql.com/doc/refman/5.7/en/server-
     options.html#option_mysqld_symbolic-links)
- * default['mysql']['security']['skip_show_database'] - [skip-show-database](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database)
- * default['mysql']['security']['local_infile'] - [local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile)
- * default['mysql']['security']['allow-suspicious-udfs'] - [allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs)
- * default['mysql']['security']['automatic_sp_privileges'] - [automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges)
- * default['mysql']['security']['secure-file-priv'] - [secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv)
+ * default['percona']['security']['skip_show_database'] - [skip-show-database](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database)
+ * default['percona']['security']['local_infile'] - [local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile)
+ * default['percona']['security']['allow-suspicious-udfs'] - [allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs)
+ * default['percona']['security']['automatic_sp_privileges'] - [automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges)
+ * default['percona']['security']['secure-file-priv'] - [secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv)
 
 ## Security Configuration
 
@@ -103,15 +99,6 @@ This setup sets the following parameters by default
     # via ['mysql']['security']['secure-file-priv']
     secure-file-priv = /tmp
 
-
-Additionally it ensures that the following parameters are not set
-
- * deactivate old-passwords via `['mysql']['security']['secure_auth']`
- * deactivate allow-suspicious-udfs via `node['mysql']['security']['allow-suspicious-udfs']`
- * skip-grant-tables
- * chroot (instead we prefer AppArmor for Ubuntu)
-
-Furthermore the permission of `/var/lib/mysql` is limited to `mysql` user.
 
 ## Tests
 

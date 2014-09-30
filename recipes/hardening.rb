@@ -1,8 +1,9 @@
 # encoding: utf-8
 #
-# Cookbook Name: mysql-hardening
+# Cookbook Name: percona-hardening
 # Recipe: hardening.rb
 #
+# Copyright 2014, Christoph Hartmann
 # Copyright 2014, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,23 +20,23 @@
 #
 
 # protect my.cnf
-File node['mysql-hardening']['mysql-conf'] do
+File node['percona-hardening']['mysql-conf'] do
   mode '600'
   owner 'root'
   group 'root'
 end
 
 # apply hardening configuration
-template node['mysql-hardening']['hardening-conf'] do
-  owner node['mysql-hardening']['user']
+template node['percona-hardening']['hardening-conf'] do
+  owner node['percona-hardening']['user']
   mode '750'
   source 'hardening.cnf.erb'
-  notifies :restart, "mysql_service[#{node['mysql']['service_name']}]"
+  notifies :restart, "service[#{node['percona-hardening']['service_name']}]", :immediately
 end
 
 # ensure permissions
-directory node['mysql']['data_dir'] do
+directory node["percona"]["server"]["datadir"]  do
   mode '755'
-  owner node['mysql-hardening']['user']
+  owner node['percona-hardening']['user']
   action :create
 end

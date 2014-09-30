@@ -55,4 +55,4 @@ platforms:
 suites:
 - name: default
   run_list:
-    - role[mysql]
+    - role[percona]
