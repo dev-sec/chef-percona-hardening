@@ -20,9 +20,9 @@
 #
 
 # protect my.cnf
-File node['percona-hardening']['mysql-conf'] do
+File node['percona']['main_config_file'] do
   mode '600'
-  owner 'root'
+  owner node['percona']['server']['username']
   group 'root'
 end
 
