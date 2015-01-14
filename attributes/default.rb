@@ -25,11 +25,4 @@ include_attribute 'percona'
 default['percona-hardening']['user'] = 'mysql'
 default['percona-hardening']['service_name'] = 'mysql'
 
-case platform_family
-when 'rhel', 'fedora'
-  default['percona-hardening']['mysql-conf'] = '/etc/my.cnf'
-else
-  default['percona-hardening']['mysql-conf'] = '/etc/mysql/my.cnf'
-end
-
 default['percona-hardening']['hardening-conf'] = '/etc/mysql/conf.d/hardening.cnf'
