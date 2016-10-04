@@ -13,7 +13,7 @@ gem 'rubocop',    '~> 0.23'
 group :development do
   gem 'guard'
   gem 'guard-rspec'
-  gem 'guard-kitchen'
+  # gem 'guard-kitchen' # guard-kitchen is not compatable with Guard 2.x
   gem 'guard-rubocop'
   gem 'guard-foodcritic'
 end
