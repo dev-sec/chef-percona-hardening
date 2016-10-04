@@ -8,7 +8,7 @@ gem 'chefspec',   '~> 5.0'
 gem 'foodcritic', '~> 3.0'
 gem 'thor-foodcritic'
 gem 'rake'
-gem 'rubocop',    '~> 0.43'
+gem 'rubocop', '~> 0.43'
 
 group :development do
   gem 'guard'
