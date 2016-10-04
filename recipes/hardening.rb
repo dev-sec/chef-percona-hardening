@@ -20,7 +20,7 @@
 #
 
 # protect my.cnf
-File node['percona']['main_config_file'] do
+file node['percona']['main_config_file'] do
   mode '600'
   owner node['percona']['server']['username']
   group 'root'
@@ -40,3 +40,8 @@ directory node['percona']['server']['datadir'] do
   owner node['percona-hardening']['user']
   action :create
 end
+
+# need to stub the mysql service for chefspec since it is from a different cookbook
+service 'mysql' do
+  action :nothing
+end if defined?(ChefSpec)
