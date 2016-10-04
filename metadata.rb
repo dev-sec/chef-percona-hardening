@@ -34,3 +34,6 @@ supports 'debian'
 supports 'fedora'
 supports 'redhat'
 supports 'ubuntu'
+
+source_url 'https://github.com/dev-sec/chef-percona-hardening'
+issues_url 'https://github.com/dev-sec/chef-percona-hardening/issues'
