@@ -14,3 +14,5 @@ Style/Encoding:
   Enabled: true
 Style/NumericLiterals:
   MinDigits: 10
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
