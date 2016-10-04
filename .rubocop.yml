@@ -2,7 +2,6 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - vendor/**
-    - metadata.rb
 Metrics/LineLength:
   Enabled: false
 Metrics/MethodLength:

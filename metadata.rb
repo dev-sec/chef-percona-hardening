@@ -15,22 +15,22 @@
 # limitations under the License.
 #
 
-name             "percona-hardening"
-maintainer       "Christoph Hartmann"
-maintainer_email "chris@lollyrock.com"
-license          "Apache v2.0"
-description      "Installs and configures a secure percona server"
+name             'percona-hardening'
+maintainer       'Christoph Hartmann'
+maintainer_email 'chris@lollyrock.com'
+license          'Apache v2.0'
+description      'Installs and configures a secure percona server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0.0"
+version          '1.0.0'
 
-depends 'percona' , ">= 0.15.5"
+depends 'percona', '>= 0.15.5'
 
 recipe 'percona-hardening::default', 'installs a hardened percona server'
 recipe 'percona-hardening::server', 'installs a hardened percona server'
 
 supports 'amazon'
-supports 'redhat'
 supports 'centos'
-supports 'fedora'
 supports 'debian'
+supports 'fedora'
+supports 'redhat'
 supports 'ubuntu'
