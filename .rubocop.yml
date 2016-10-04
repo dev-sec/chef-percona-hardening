@@ -12,7 +12,13 @@ Style/Documentation:
 Style/Encoding:
   EnforcedStyle: always
   Enabled: true
+Style/ExtraSpacing:
+  Exclude:
+    - attributes/hardening.rb
 Style/NumericLiterals:
   MinDigits: 10
 Style/RegexpLiteral:
   AllowInnerSlashes: true
+Style/SpaceAroundOperators:
+  Exclude:
+    - attributes/hardening.rb
