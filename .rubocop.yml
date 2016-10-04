@@ -1,20 +1,15 @@
 AllCops:
+  DisplayCopNames: true
   Exclude:
     - vendor/**
     - metadata.rb
-    - '**/Puppetfile'
-
-Documentation:
+Metrics/LineLength:
   Enabled: false
-AlignParameters:
-  Enabled: true
-Encoding:
-  Enabled: true
-HashSyntax:
-  Enabled: true
-LineLength:
-  Enabled: false
-MethodLength:
+Metrics/MethodLength:
   Max: 30
-NumericLiterals:
+Style/Documentation:
+  Enabled: false
+Style/Encoding:
+  Enabled: true
+Style/NumericLiterals:
   MinDigits: 10
