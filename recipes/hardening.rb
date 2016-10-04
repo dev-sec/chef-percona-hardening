@@ -35,7 +35,7 @@ template node['percona-hardening']['hardening-conf'] do
 end
 
 # ensure permissions
-directory node["percona"]["server"]["datadir"]  do
+directory node['percona']['server']['datadir']  do
   mode '755'
   owner node['percona-hardening']['user']
   action :create
