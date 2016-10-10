@@ -1,5 +1,11 @@
 # percona-hardening (Chef cookbook)
 
+[![Supermarket](http://img.shields.io/cookbook/v/percona-hardening.svg)][https://supermarket.getchef.com/cookbooks/percona-hardening]
+[![Build Status](http://img.shields.io/travis/dev-sec/chef-percona-hardening.svg)][http://travis-ci.org/dev-sec/chef-percona-hardening]
+[![Code Coverage](http://img.shields.io/coveralls/dev-sec/chef-percona-hardening.svg)][https://coveralls.io/r/dev-sec/chef-percona-hardening]
+[![Dependencies](http://img.shields.io/gemnasium/dev-sec/chef-percona-hardening.svg)][https://gemnasium.com/dev-sec/chef-percona-hardening]
+[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][https://gitter.im/dev-sec/general]
+
 ## Description
 
 Provides security configurations for [Percona](http://www.percona.com/). It is intended to set up production-ready Percona instances that are configured with minimal surface for attackers.
@@ -57,7 +63,7 @@ Add the following to your run list and customize security option attributes
 
 ## Security Options
 
-Further information is already available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step) 
+Further information is already available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step)
 
  * default['percona']['security']['chroot'] - [chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)
  * default['percona']['security']['safe_user_create'] - [safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create)

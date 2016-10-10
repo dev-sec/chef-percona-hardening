@@ -2,18 +2,23 @@
 
 source 'https://rubygems.org'
 
-gem 'berkshelf',  '~> 3.0'
-gem 'chef',       '~> 11.12'
-gem 'chefspec',   '~> 3.4'
-gem 'foodcritic', '~> 3.0'
-gem 'thor-foodcritic'
-gem 'rake'
-gem 'rubocop',    '~> 0.23'
+gem 'berkshelf',  '~> 5.0'
+gem 'chef',       '~> 12.14'
+
+group :test do
+  gem 'chefspec', '~> 5.0'
+  gem 'coveralls', require: false
+  gem 'foodcritic', '~> 6.3'
+  gem 'rake'
+  gem 'rubocop', '~> 0.43.0'
+  gem 'thor-foodcritic'
+  gem 'simplecov', '~> 0.10'
+end
 
 group :development do
   gem 'guard'
   gem 'guard-rspec'
-  gem 'guard-kitchen'
+  # gem 'guard-kitchen' # guard-kitchen is not compatable with Guard 2.x
   gem 'guard-rubocop'
   gem 'guard-foodcritic'
 end
