@@ -1,10 +1,9 @@
-# encoding: utf-8
 #
-# Cookbook Name:: percona-hardening
+# Cookbook:: percona-hardening
 # Attributes:: default
 #
-# Copyright 2014, Christoph Hartmann
-# Copyright 2014, Deutsche Telekom AG
+# Copyright:: 2014, Christoph Hartmann
+# Copyright:: 2014, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -44,7 +43,7 @@ default['mysql']['security']['local-infile']            = 0
 default['mysql']['security']['allow-suspicious-udfs']   = 0
 
 # @see https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges
-default['mysql']['security']['automatic-sp-privileges']   = 0
+default['mysql']['security']['automatic-sp-privileges'] = 0
 
 # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv
-default['mysql']['security']['secure-file-priv']        = '/tmp'
+default['mysql']['security']['secure-file-priv'] = '/tmp'

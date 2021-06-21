@@ -1,6 +1,4 @@
 #!/usr/bin/env rake
-# encoding: utf-8
-
 require 'foodcritic'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
@@ -57,7 +55,6 @@ begin
 
   desc 'Alias for kitchen:all'
   task acceptance: 'kitchen:all'
-
 rescue LoadError
   puts '>>>>> Kitchen gem not loaded, omitting tasks' unless ENV['CI']
 end
